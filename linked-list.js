@@ -22,19 +22,47 @@ class LinkedList {
   /** push(val): add new value to end of list. */
 
   push(val) {
-
+    const newVal = new Node(val);
+    if (this.head === null) this.head = newVal;
+    if (this.tail !== null) {
+      newVal.prev = this.tail;
+      this.tail.next = newVal;
+    }
+    this.tail = newVal;
+    this.length += 1;
   }
 
   /** unshift(val): add new value to start of list. */
 
   unshift(val) {
-
+    const newVal = new Node(val);
+    if (this.head !== null) newVal.next = this.head;
+    if (this.tail === null) this.tail = newVal;
+    this.head = newVal;
+    this.length += 1;
   }
 
   /** pop(): return & remove last item. */
 
   pop() {
+    if (this.tail === null) return null;
 
+    if (this.head === this.tail) {
+      const popped = this.head.val;
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
+      return popped;
+    }
+
+    let current = this.head;
+    while (this.tail !== current.next) {
+      current = current.next;
+    }
+    const popped = current.next.val;
+    this.tail = current;
+    this.length -= 1;
+    return popped;
   }
 
   /** shift(): return & remove first item. */
@@ -73,5 +101,12 @@ class LinkedList {
     
   }
 }
+
+//let insects = new LinkedList(["ant", "bee", "caterpillar"]);
+//let popped = insects.pop();
+
+let lst = new LinkedList([5, 10]);
+lst.pop();
+lst.pop();
 
 module.exports = LinkedList;
