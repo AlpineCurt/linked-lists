@@ -190,12 +190,6 @@ class LinkedList {
     }
     return sum/currIdx;
   }
-
-  /** reverse():  reverses the order of Nodes in list*/
-
-  reverse() {
-    
-  }
 }
 
 //let insects = new LinkedList(["ant", "bee", "caterpillar"]);
